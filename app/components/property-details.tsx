@@ -2,6 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Bath, Bed, Medal, Star, Users } from "lucide-react";
+import { ReactNode } from 'react';
 
 export default function PropertyDetails() {
   return (
@@ -73,7 +74,12 @@ function PropertyAmenities() {
   );
 }
 
-function AmenityItem({ icon, text }) {
+interface AmenityItemProps {
+  icon: ReactNode;
+  text: string;
+}
+
+function AmenityItem({ icon, text }: AmenityItemProps) {
   return (
     <div className="flex items-center space-x-2">
       {icon}

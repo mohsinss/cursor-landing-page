@@ -11,9 +11,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
-import { cn } from "@/lib/utils";
-import clsx from 'clsx';
-
+import { cn } from "@/lib/utils"
 
 export default function Nav() {
   return (
@@ -116,15 +114,23 @@ export default function Nav() {
   )
 }
 
-const ListItem = ({ className, title, children, ...props }) => {
+interface ListItemProps {
+  className?: string;
+  title: string;
+  children: React.ReactNode;
+  href: string;
+}
+
+const ListItem = ({ className, title, children, href, ...props }: ListItemProps) => {
   return (
     <li>
       <NavigationMenuLink asChild>
         <a
-          className={clsx(
+          className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
+          href={href}
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>

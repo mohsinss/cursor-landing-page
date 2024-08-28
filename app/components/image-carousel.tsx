@@ -1,7 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function ImageCarousel({ images, currentImage, setCurrentImage }) {
+interface ImageCarouselProps {
+  images: string[];
+  currentImage: number;
+  setCurrentImage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export default function ImageCarousel({ images, currentImage, setCurrentImage }: ImageCarouselProps) {
   const nextImage = () => setCurrentImage((prev) => (prev + 1) % images.length);
   const prevImage = () => setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
 
@@ -30,7 +36,12 @@ export default function ImageCarousel({ images, currentImage, setCurrentImage })
   );
 }
 
-function CarouselButton({ direction, onClick }) {
+interface CarouselButtonProps {
+  direction: "left" | "right";
+  onClick: () => void;
+}
+
+function CarouselButton({ direction, onClick }: CarouselButtonProps) {
   const isLeft = direction === "left";
   return (
     <Button
@@ -45,7 +56,12 @@ function CarouselButton({ direction, onClick }) {
   );
 }
 
-function ImageIndicators({ images, currentImage }) {
+interface ImageIndicatorsProps {
+  images: string[];
+  currentImage: number;
+}
+
+function ImageIndicators({ images, currentImage }: ImageIndicatorsProps) {
   return (
     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
       {images.map((_, index) => (

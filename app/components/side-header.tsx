@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Globe, Home, Menu, MessageCircle, PlusCircle, Search } from "lucide-react";
 import Link from "next/link";
+import { ReactNode } from 'react';
 
 export default function SideHeader() {
   return (
@@ -51,7 +52,13 @@ export default function SideHeader() {
   );
 }
 
-function NavLink({ href, icon, text }) {
+interface NavLinkProps {
+  href: string;
+  icon: ReactNode;
+  text: string;
+}
+
+function NavLink({ href, icon, text }: NavLinkProps) {
   return (
     <Link
       href={href}

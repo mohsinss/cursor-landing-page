@@ -42,7 +42,7 @@ export default function Testimonials() {
           {testimonials.slice(0, visibleTestimonials).map((testimonial, index) => (
             <Card key={index} className="bg-white shadow-sm hover:shadow-md transition-shadow">
               <CardContent className="pt-6">
-                <p className="text-lg text-gray-700 italic">"{testimonial.quote}"</p>
+                <p className="text-lg text-gray-700 italic">&ldquo;{testimonial.quote}&rdquo;</p>
               </CardContent>
               <CardFooter className="flex items-center space-x-4">
                 <Avatar>

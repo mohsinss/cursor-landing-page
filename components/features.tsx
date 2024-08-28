@@ -22,7 +22,7 @@ export default function Testimonials() {
         {testimonials.map((testimonial, index) => (
           <Card key={index}>
             <CardContent className="pt-6">
-              <p className="text-lg italic">"{testimonial.quote}"</p>
+              <p className="text-lg italic">&ldquo;{testimonial.quote}&rdquo;</p>
             </CardContent>
             <CardFooter className="flex items-center space-x-4">
               <Avatar>
