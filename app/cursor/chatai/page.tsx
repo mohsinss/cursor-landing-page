@@ -3,6 +3,14 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { User, generateUserDescriptions } from '../advanced/prompt-files/actionsai';
+import { shuffle } from 'lodash'; // Add this import at the top
+
+interface RandomUser {
+  name: { first: string; last: string };
+  email: string;
+  picture: { large: string };
+  //
+}
 
 function UserProfiles() {
   const [users, setUsers] = useState<User[]>([]);
@@ -11,10 +19,23 @@ function UserProfiles() {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await fetch('https://randomuser.me/api/?results=10&gender=female&nat=us');
-      const data = await response.json();
-      const usersWithDescriptions = await generateUserDescriptions(data.results);
-      console.log('Users with AI-generated descriptions:', usersWithDescriptions);
+      const pexelsResponse = await fetch('https://api.pexels.com/v1/search?query=woman+portrait&per_page=50&orientation=portrait', {
+        headers: {
+          'Authorization': 'bEMUwt4evIBX98RzratLx9Nw0DxGkXJaiBoCQAZmf3B4LhsnipZoUaJW'
+        }
+      });
+      const pexelsData = await pexelsResponse.json();
+      const randomUserResponse = await fetch('https://randomuser.me/api/?results=10&gender=female');
+      const randomUserData = await randomUserResponse.json();
+      
+      const shuffledPhotos = shuffle(pexelsData.photos);
+      
+      const usersWithImages = randomUserData.results.map((user: RandomUser, index: number) => ({
+        ...user,
+        picture: { large: shuffledPhotos[index].src.large }
+      }));
+      
+      const usersWithDescriptions = await generateUserDescriptions(usersWithImages);
       setUsers(prevUsers => [...prevUsers, ...usersWithDescriptions]);
     } catch (error) {
       console.error('Error fetching users:', error);
