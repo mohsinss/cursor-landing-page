@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { User, generateUserDescriptions } from '../advanced/prompt-files/actionsai';
-import { shuffle } from 'lodash'; // Add: this import at the top
+import { shuffle } from 'lodash'; // Add. this import at the top
 
 interface RandomUser {
   name: { first: string; last: string };
