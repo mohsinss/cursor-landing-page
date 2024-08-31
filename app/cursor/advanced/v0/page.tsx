@@ -1,7 +1,7 @@
 "use client";
 
-import BookingCard from "@/app/components/booking-card";
-import DatePicker from "@/app/components/date-picker";
+import BookingCard from "@/components/event-type-card";
+import DatePicker from "@/components/date-navigator";
 import PropertyDetails from "@/app/components/property-details";
 import SideHeader from "@/app/components/side-header";
 
@@ -14,7 +14,11 @@ export default function AdvancedPage() {
           <DatePicker />
           <div className="grid gap-6 md:grid-cols-3">
             <PropertyDetails />
-            <BookingCard />
+            <BookingCard 
+              title="Sample Booking"
+              duration={60}
+              description="This is a sample booking description."
+            />
           </div>
         </div>
       </main>
